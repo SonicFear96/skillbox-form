@@ -1,10 +1,27 @@
 .button {
-  border: 1px solid transparent;
-  padding: 20px;
-  width: 100%;
   display: flex;
   justify-content: center;
-  // background: $color-black-second;
-  // color: $color-white;
-  cursor: pointer;
+  padding: 17px 48px;
+  width: 100%;
+  background: $accent-day-brand;
+  color: $accent-day-always-white;
+  transition: background-color 0.4s ease;
+  border-radius: 12px;
+  font-family: "GraphikMedium";
+  font-size: 18px;
+  line-height: 20px;
+}
+@include hovers {
+  .button {
+    &:not(:disabled):hover,
+    &:not([disabled]):hover {
+      background: $accent-day-always-black;
+      cursor: pointer;
+    }
+  }
+}
+button:disabled,
+button[disabled] {
+  background: $bg-day-secondary-accent;
+  color: $text-day-disable;
 }
