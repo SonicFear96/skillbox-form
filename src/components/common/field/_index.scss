@@ -1,0 +1,78 @@
+.field {
+  position: relative;
+  font-family: "GraphikRegular";
+  input {
+    width: 100%;
+    padding: 28px 18px 18px 18px;
+    height: 56px;
+    outline: none;
+    background: $bg-day-secondary;
+    color: $text-day-main;
+    font-size: 14px;
+    line-height: $line-height-default;
+    border: 1px solid $strokes-day-main;
+    transition: border-color 0.4s ease, background-color 0.4s ease;
+    &::placeholder {
+      color: $text-day-main;
+    }
+    &:focus ~ label {
+      transform: translate3d(-7%, -52%, 0) scale(0.83);
+      color: $text-day-secondary;
+    }
+    &:focus {
+      background: $bg-day-main;
+      border-color: $strokes-day-secondary;
+    }
+  }
+  label {
+    display: block;
+    position: absolute;
+    top: 20px;
+    left: 18px;
+    color: $text-day-main;
+    font-size: 14px;
+    line-height: $line-height-default;
+    transition: transform 0.4s ease;
+  }
+  &-error {
+    font-size: 11px;
+    line-height: 12px;
+    color: $accent-day-danger;
+  }
+  &--error {
+    input {
+      background: $accent-day-danger-bg;
+      border-color: $accent-day-danger;
+    }
+  }
+  &--filled {
+    input {
+      background: $bg-day-secondary;
+      border-color: $strokes-day-secondary;
+    }
+    label {
+      transform: translate3d(-7%, -52%, 0) scale(0.83);
+      color: $text-day-secondary;
+    }
+  }
+  input:disabled,
+  input[disabled] {
+    background: $bg-day-secondary-accent;
+    color: $text-day-disable;
+  }
+}
+@include hovers {
+  .field {
+    &:hover {
+      input {
+        border-color: $strokes-day-secondary;
+      }
+    }
+    &--error:hover {
+      input {
+        background: $accent-day-danger-bg;
+        border-color: $accent-day-danger;
+      }
+    }
+  }
+}
