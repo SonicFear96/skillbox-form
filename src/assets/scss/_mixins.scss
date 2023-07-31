@@ -1,0 +1,44 @@
+// adaptive
+
+$desktop: 1280px;
+$smallDekstop: 1160px;
+$hovers: 1024px;
+$tablet: 960px;
+$small: 768px;
+$mobile: 575px;
+
+@mixin desktop {
+  @media (min-width: $desktop) {
+    @content;
+  }
+}
+@mixin smallDesktop {
+  @media (max-width: $smallDesktop) {
+    @content;
+  }
+}
+@mixin hovers {
+  @media (min-width: $hovers) {
+    @content;
+  }
+}
+@mixin tablet {
+  @media (min-width: $tablet) {
+    @content;
+  }
+}
+@mixin small {
+  @media (max-width: $small) {
+    @content;
+  }
+}
+@mixin hovers {
+  @media (min-width: $hovers) {
+    @content;
+  }
+}
+@mixin mobile {
+  @media (max-width: $mobile) {
+    @content;
+  }
+}
