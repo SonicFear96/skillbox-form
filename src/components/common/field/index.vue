@@ -33,10 +33,12 @@ export default {
     value: [String, Number],
     placeholder: String,
     error: [String, Boolean],
+    disabled: Boolean,
   },
   data() {
     return {
       localId: this.id,
+      localValue: "",
     };
   },
   computed: {
