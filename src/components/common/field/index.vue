@@ -43,7 +43,9 @@ export default {
   },
   computed: {
     errorText() {
-      return typeof this.error === "string" ? this.error : "";
+      return typeof this.error === "string"
+        ? this.error
+        : "Введено неверное значение";
     },
   },
   methods: {
