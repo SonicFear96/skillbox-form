@@ -1,5 +1,9 @@
 <template>
-  <article class="card-payment" :class="{ 'card-payment--active': isActive }">
+  <article
+    class="card-payment"
+    :class="{ 'card-payment--active': isActive }"
+    @click="$emit('click')"
+  >
     <span class="card-payment__text" v-html="data.text"></span>
     <div class="card-payment__icons-list">
       <img

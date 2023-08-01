@@ -1,19 +1,17 @@
 // adaptive
 
 $desktop: 1280px;
-$smallDekstop: 1160px;
 $hovers: 1024px;
-$tablet: 960px;
-$small: 768px;
-$mobile: 575px;
+$tablet: 768px;
+$mobile: 360px;
 
 @mixin desktop {
   @media (min-width: $desktop) {
     @content;
   }
 }
-@mixin smallDesktop {
-  @media (max-width: $smallDesktop) {
+@mixin hovers {
+  @media (min-width: $hovers) {
     @content;
   }
 }
@@ -27,18 +25,8 @@ $mobile: 575px;
     @content;
   }
 }
-@mixin small {
-  @media (max-width: $small) {
-    @content;
-  }
-}
-@mixin hovers {
-  @media (min-width: $hovers) {
-    @content;
-  }
-}
 @mixin mobile {
-  @media (max-width: $mobile) {
+  @media (min-width: $mobile) {
     @content;
   }
 }

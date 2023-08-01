@@ -34,15 +34,46 @@ a {
   text-decoration: none;
   color: inherit;
 }
-
-//
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  font-size: inherit;
+  font-weight: inherit;
+}
 
 html {
   color: $text-day-main;
-  font-size: $font-size-default;
-  line-height: $line-height-default;
+  font-size: $font-size-default-mobile;
+  line-height: $line-height-default-mobile;
+  font-family: "GraphikRegular";
 }
 
-.wrapper {
-  padding: 0 100px;
+.h2 {
+  font-family: "GraphikSemiBold";
+  font-size: 24px;
+  line-height: 32px;
+}
+.h3 {
+  font-size: 18px;
+  font-family: "GraphikMedium";
+  line-height: 24px;
+}
+
+@include hovers {
+  html {
+    font-size: $font-size-default;
+    line-height: $line-height-default;
+  }
+  .h2 {
+    font-size: 32px;
+    line-height: 40px;
+  }
+  .h3 {
+    font-size: 20px;
+    line-height: 26px;
+  }
 }
