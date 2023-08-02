@@ -33,63 +33,7 @@
           </div>
         </div>
         <div class="order-form order__item">
-          <form action>
-            <div class="order-form__wrapper">
-              <div class="order-form__pay">
-                <h3 class="order-form__title h3">Выберите вариант оплаты</h3>
-                <div class="order-form__card-list">
-                  <cardPayment
-                    v-for="item in payment"
-                    :data="item"
-                    :key="item.id"
-                    :isActive="activePaymentCard.id === item.id"
-                    @click="checkActivePaymentCard(item)"
-                  />
-                </div>
-              </div>
-              <div class="order-form__personal">
-                <h3 class="order-form__title h3">
-                  Заполните контактные данные
-                </h3>
-                <div class="order-form__field-list">
-                  <vField
-                    class="order-form__field order-form__field--name"
-                    :value="''"
-                    v-model="form.name"
-                  >
-                    Имя
-                  </vField>
-                  <vField
-                    class="order-form__field order-form__field--phone"
-                    :value="''"
-                    v-model="form.phone"
-                  >
-                    Телефон
-                  </vField>
-                  <vField
-                    class="order-form__field order-form__field--mail"
-                    :value="''"
-                    v-model="form.email"
-                  >
-                    Электронная почта
-                  </vField>
-                </div>
-                <vButton class="order-form__button"> Отправить </vButton>
-                <p class="order-form__security">
-                  <span class="order-form__security-text">
-                    Нажимая на кнопку, я соглашаюсь на
-                    <a class="order-form__security-link" href="#">
-                      обработку персональных данных
-                    </a>
-                    и&nbsp;
-                    <a class="order-form__security-link" href="#">
-                      с&nbsp;правилами пользования Платформой
-                    </a>
-                  </span>
-                </p>
-              </div>
-            </div>
-          </form>
+          <vForm :payment="payment" />
         </div>
       </div>
     </section>
@@ -97,25 +41,16 @@
 </template>
 
 <script>
-import vButton from "@/components/common/button";
-import vField from "@/components/common/field";
-import cardPayment from "@/components/cards/payment";
 import iconSale from "@/components/icons/sale";
+import vForm from "@/components/form";
 export default {
   name: "App",
   components: {
-    vButton,
-    vField,
-    cardPayment,
     iconSale,
+    vForm,
   },
   data() {
     return {
-      form: {
-        name: "",
-        phone: "",
-        email: "",
-      },
       payment: [
         {
           id: 1,
@@ -136,7 +71,7 @@ export default {
         {
           id: 3,
           alias: "sberbank",
-          text: "В&nbsp;рассрочку Покупай со Сбером",
+          text: "В&nbsp;рассрочку в&nbsp;Покупай со Сбером",
           images: [{ id: 1, title: "Сбербанк", image: "sberbank" }],
         },
         {
@@ -146,16 +81,7 @@ export default {
           images: [{ id: 1, title: "Тинькофф", image: "tinkoff" }],
         },
       ],
-      activePaymentCard: {},
     };
-  },
-  methods: {
-    checkActivePaymentCard(data) {
-      this.activePaymentCard = data;
-    },
-  },
-  mounted() {
-    this.activePaymentCard = this.payment[0];
   },
 };
 </script>
@@ -257,40 +183,6 @@ export default {
         line-height: 16px;
       }
     }
-    &-form {
-      &__wrapper {
-        display: flex;
-        flex-direction: column;
-        gap: 40px;
-      }
-      &__card-list {
-        margin-top: 32px;
-        display: grid;
-        grid-gap: 8px;
-        grid-template-columns: 1fr 1fr;
-      }
-      &__field-list {
-        margin-top: 32px;
-        display: flex;
-        flex-direction: column;
-        gap: 16px;
-      }
-      &__button {
-        margin-top: 32px;
-      }
-      &__security {
-        max-width: 82%;
-        margin-top: 16px;
-        &-text {
-          font-size: 12px;
-          line-height: 16px;
-          color: $text-day-secondary;
-        }
-        &-link {
-          text-decoration: underline;
-        }
-      }
-    }
   }
   @include tablet {
     .order {
@@ -321,9 +213,6 @@ export default {
       }
       &-form {
         width: calc(100% / 12 * 6 + 25px);
-        &__button {
-          width: max-content;
-        }
       }
     }
   }

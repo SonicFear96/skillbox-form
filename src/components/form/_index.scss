@@ -1,0 +1,39 @@
+.form {
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+  }
+  &__card-list {
+    margin-top: 32px;
+    display: grid;
+    grid-gap: 8px;
+    grid-template-columns: 1fr 1fr;
+  }
+  &__field-list {
+    margin-top: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  &__button {
+    margin-top: 32px;
+  }
+  &__security {
+    max-width: 82%;
+    margin-top: 16px;
+    &-text {
+      font-size: 12px;
+      line-height: 16px;
+      color: $text-day-secondary;
+    }
+    &-link {
+      text-decoration: underline;
+    }
+  }
+  @include hovers {
+    &__button {
+      width: max-content;
+    }
+  }
+}
