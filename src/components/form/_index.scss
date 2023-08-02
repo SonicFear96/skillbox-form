@@ -5,23 +5,23 @@
     gap: 40px;
   }
   &__card-list {
-    margin-top: 32px;
+    margin-top: 20px;
     display: grid;
-    grid-gap: 8px;
+    grid-gap: 4px;
     grid-template-columns: 1fr 1fr;
   }
   &__field-list {
-    margin-top: 32px;
+    margin-top: 20px;
     display: flex;
     flex-direction: column;
     gap: 16px;
   }
   &__button {
-    margin-top: 32px;
+    margin-top: 34px;
   }
   &__security {
-    max-width: 82%;
-    margin-top: 16px;
+    margin-top: 14px;
+    line-height: 18px;
     &-text {
       font-size: 12px;
       line-height: 16px;
@@ -32,8 +32,20 @@
     }
   }
   @include hovers {
+    &__field-list {
+      margin-top: 32px;
+    }
+    &__card-list {
+      margin-top: 32px;
+      grid-gap: 8px;
+    }
     &__button {
       width: max-content;
+    }
+  }
+  @include desktop {
+    &__security {
+      max-width: 82%;
     }
   }
 }

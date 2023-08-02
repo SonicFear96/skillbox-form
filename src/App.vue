@@ -71,7 +71,7 @@ export default {
         {
           id: 3,
           alias: "sberbank",
-          text: "В&nbsp;рассрочку в&nbsp;Покупай со Сбером",
+          text: "В&nbsp;рассрочку в&nbsp;Покупай со&nbsp;Сбером",
           images: [{ id: 1, title: "Сбербанк", image: "sberbank" }],
         },
         {
@@ -89,8 +89,8 @@ export default {
 <style lang="scss">
 #app {
   .section {
+    padding: 44px 0;
     &--form {
-      padding: 112px 0;
       background: $accent-day-variable;
     }
   }
@@ -102,7 +102,6 @@ export default {
     justify-content: center;
     flex-direction: column;
     gap: 8px;
-    max-width: 1168px;
     &__item {
       border-radius: 20px;
       background: $bg-day-main;
@@ -118,24 +117,25 @@ export default {
     }
     &-info {
       &__text {
+        margin-top: 15px;
         font-family: "GraphikRegular";
-        margin-top: 24px;
-        font-size: 16px;
-        line-height: 24px;
+        font-size: 14px;
+        line-height: 22px;
       }
       &__bottom {
-        margin-top: auto;
+        margin-top: 41px;
       }
       &__price {
         position: relative;
-        margin-top: 24px;
-        padding: 20px;
+        margin-top: 20px;
+        padding: 16px;
         background: $bg-day-secondary;
         border-radius: 20px;
       }
       .price-old {
         font-family: "GraphikMedium";
-        font-size: 16px;
+        font-size: 14px;
+        line-height: 18px;
         &__value {
           position: relative;
           &::before {
@@ -159,6 +159,7 @@ export default {
         }
       }
       .price-current {
+        margin-top: 13px;
         display: flex;
         gap: 4px;
         font-family: "GraphikSemiBold";
@@ -166,7 +167,6 @@ export default {
         line-height: 32px;
         &__valuta {
           display: block;
-          margin-top: 5px;
           font-size: 14px;
           font-family: "GraphikMedium";
           line-height: 18px;
@@ -174,45 +174,102 @@ export default {
       }
       &__sale-icon {
         position: absolute;
-        top: 20px;
-        right: 20px;
+        top: 16px;
+        right: 16px;
       }
       &__payment-text {
         margin-top: 4px;
+        margin-bottom: 2px;
+        margin-top: 1px;
+        margin-bottom: 2px;
         font-size: 12px;
         line-height: 16px;
       }
     }
   }
+  @include mobile {
+    max-width: 100%;
+  }
   @include tablet {
     .order {
+      max-width: 696px;
       &-info,
       &-form {
-        padding: 34px 120px;
+        padding: 32px 120px;
+      }
+      &-info {
+        &__bottom {
+          margin-top: 40px;
+        }
+        &__price {
+          margin-top: 20px;
+        }
       }
     }
   }
   @include hovers {
     .order {
       flex-direction: row;
+      max-width: 928px;
       &-info,
       &-form {
         padding: 40px;
       }
       &-info {
         width: calc(100% / 12 * 6);
+        padding: 40px;
+        padding-right: 25px;
+        &__text {
+          margin-top: 24px;
+          font-size: 16px;
+          line-height: 24px;
+          width: 80%;
+        }
+        &__bottom {
+          margin-top: auto;
+        }
         .price-current {
           margin-top: 16px;
           font-size: 32px;
           line-height: 40px;
           &__valuta {
+            margin-top: 5px;
             font-size: 16px;
             line-height: 20px;
           }
         }
       }
+      &__price {
+        margin-top: 24px;
+        padding: 20px;
+      }
+      .price-old {
+        font-size: 16px;
+        line-height: $line-height-default;
+      }
       &-form {
         width: calc(100% / 12 * 6 + 25px);
+      }
+      &__sale-icon {
+        top: 20px;
+        right: 20px;
+      }
+      &__payment-text {
+        margin-top: 4px;
+        margin-bottom: 2px;
+      }
+    }
+  }
+  @include desktop {
+    .section {
+      padding: 112px 0;
+    }
+    .order {
+      max-width: 1168px;
+      &-info {
+        &__text {
+          width: 100%;
+        }
       }
     }
   }
