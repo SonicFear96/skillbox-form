@@ -28,6 +28,7 @@
               </p>
               <div class="order-info__sale-icon">
                 <iconSale />
+                <span class="order-info__sale-percent">–00%</span>
               </div>
             </div>
           </div>
@@ -174,8 +175,22 @@ export default {
       }
       &__sale-icon {
         position: absolute;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         top: 16px;
         right: 16px;
+        width: 48px;
+        height: 48px;
+        svg {
+          position: absolute;
+          color: $accent-day-sale;
+        }
+      }
+      &__sale-percent {
+        position: relative;
+        font-family: "GraphikMedium";
+        white-space: nowrap;
       }
       &__payment-text {
         margin-top: 4px;
@@ -249,10 +264,6 @@ export default {
       }
       &-form {
         width: calc(100% / 12 * 6 + 25px);
-      }
-      &__sale-icon {
-        top: 20px;
-        right: 20px;
       }
       &__payment-text {
         margin-top: 4px;
