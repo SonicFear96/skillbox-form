@@ -3,7 +3,7 @@
   font-family: "GraphikRegular";
   input {
     width: 100%;
-    padding: 28px 18px 16px 18px;
+    padding: 25px 18px 9px 18px;
     height: 56px;
     outline: none;
     background: $bg-day-secondary;
@@ -17,7 +17,9 @@
       color: $text-day-main;
     }
     &:focus ~ label {
-      transform: translate3d(-7%, -52%, 0) scale(0.83);
+      top: 12px;
+      font-size: 11px;
+      line-height: 12px;
       color: $text-day-secondary;
     }
     &:focus {
@@ -28,14 +30,16 @@
   label {
     display: block;
     position: absolute;
-    top: 20px;
+    top: 18px;
     left: 18px;
     color: $text-day-main;
-    font-size: 14px;
+    font-size: 16px;
     line-height: $line-height-default;
-    transition: transform 0.4s ease;
+    transition: all 0.4s ease;
   }
   &-error {
+    position: relative;
+    top: 3px;
     font-size: 11px;
     line-height: 12px;
     color: $accent-day-danger;
@@ -52,7 +56,9 @@
       border-color: $strokes-day-secondary;
     }
     label {
-      transform: translate3d(-7%, -52%, 0) scale(0.83);
+      top: 12px;
+      font-size: 11px;
+      line-height: 12px;
       color: $text-day-secondary;
     }
   }

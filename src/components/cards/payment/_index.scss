@@ -1,37 +1,70 @@
 .card-payment {
+  position: relative;
   display: flex;
   flex-direction: column;
-  padding: 12px;
+  padding: 11px 10px 10px 10px;
   border-radius: 12px;
   border: 1px solid $strokes-day-main;
   transition: border-color 0.4s ease;
+  margin: 0;
   &--active {
     border-color: $accent-day-brand;
   }
   &__text {
     font-family: "GraphikRegular";
+    font-size: 12px;
+    line-height: 16px;
     letter-spacing: 0px;
-    -webkit-line-clamp: 3;
+    -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
-    height: 45px;
+    height: 30px;
     overflow: hidden;
     text-overflow: ellipsis;
   }
   &__icons {
     &-list {
-      margin-top: 16px;
+      margin-top: 15px;
       display: flex;
       gap: 4px;
     }
   }
   @include hovers {
-    padding: 16px;
-    &__text {
-      -webkit-line-clamp: 2;
-      height: 38px;
+    &::before {
+      position: absolute;
+      margin: 0;
+      top: 0;
+      left: 0;
+      content: "";
+      width: 100%;
+      height: 100%;
+      border: 2px solid transparent;
+      border-radius: 12px;
+      transition: border 0.4s ease;
+      z-index: 100;
     }
+    padding: 16px;
+
     &:hover {
       cursor: pointer;
+      border: 1px solid $accent-day-brand;
+      &::before {
+        border: 2px solid $accent-day-brand;
+      }
+    }
+    &__text {
+      font-size: $font-size-default;
+      line-height: 19px;
+      letter-spacing: 0px;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      height: 45px;
+    }
+    &__icons {
+      &-list {
+        margin-top: 16px;
+        display: flex;
+        gap: 4px;
+      }
     }
   }
 }

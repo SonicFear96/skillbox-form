@@ -33,63 +33,7 @@
           </div>
         </div>
         <div class="order-form order__item">
-          <form action>
-            <div class="order-form__wrapper">
-              <div class="order-form__pay">
-                <h3 class="order-form__title h3">Выберите вариант оплаты</h3>
-                <div class="order-form__card-list">
-                  <cardPayment
-                    v-for="item in payment"
-                    :data="item"
-                    :key="item.id"
-                    :isActive="activePaymentCard.id === item.id"
-                    @click="checkActivePaymentCard(item)"
-                  />
-                </div>
-              </div>
-              <div class="order-form__personal">
-                <h3 class="order-form__title h3">
-                  Заполните контактные данные
-                </h3>
-                <div class="order-form__field-list">
-                  <vField
-                    class="order-form__field order-form__field--name"
-                    :value="''"
-                    v-model="form.name"
-                  >
-                    Имя
-                  </vField>
-                  <vField
-                    class="order-form__field order-form__field--phone"
-                    :value="''"
-                    v-model="form.phone"
-                  >
-                    Телефон
-                  </vField>
-                  <vField
-                    class="order-form__field order-form__field--mail"
-                    :value="''"
-                    v-model="form.email"
-                  >
-                    Электронная почта
-                  </vField>
-                </div>
-                <vButton class="order-form__button"> Отправить </vButton>
-                <p class="order-form__security">
-                  <span class="order-form__security-text">
-                    Нажимая на кнопку, я соглашаюсь на
-                    <a class="order-form__security-link" href="#">
-                      обработку персональных данных
-                    </a>
-                    и&nbsp;
-                    <a class="order-form__security-link" href="#">
-                      с&nbsp;правилами пользования Платформой
-                    </a>
-                  </span>
-                </p>
-              </div>
-            </div>
-          </form>
+          <vForm :payment="payment" />
         </div>
       </div>
     </section>
@@ -97,25 +41,16 @@
 </template>
 
 <script>
-import vButton from "@/components/common/button";
-import vField from "@/components/common/field";
-import cardPayment from "@/components/cards/payment";
 import iconSale from "@/components/icons/sale";
+import vForm from "@/components/form";
 export default {
   name: "App",
   components: {
-    vButton,
-    vField,
-    cardPayment,
     iconSale,
+    vForm,
   },
   data() {
     return {
-      form: {
-        name: "",
-        phone: "",
-        email: "",
-      },
       payment: [
         {
           id: 1,
@@ -136,7 +71,7 @@ export default {
         {
           id: 3,
           alias: "sberbank",
-          text: "В&nbsp;рассрочку Покупай со Сбером",
+          text: "В&nbsp;рассрочку в&nbsp;Покупай со&nbsp;Сбером",
           images: [{ id: 1, title: "Сбербанк", image: "sberbank" }],
         },
         {
@@ -146,16 +81,7 @@ export default {
           images: [{ id: 1, title: "Тинькофф", image: "tinkoff" }],
         },
       ],
-      activePaymentCard: {},
     };
-  },
-  methods: {
-    checkActivePaymentCard(data) {
-      this.activePaymentCard = data;
-    },
-  },
-  mounted() {
-    this.activePaymentCard = this.payment[0];
   },
 };
 </script>
@@ -163,8 +89,8 @@ export default {
 <style lang="scss">
 #app {
   .section {
+    padding: 44px 0;
     &--form {
-      padding: 112px 0;
       background: $accent-day-variable;
     }
   }
@@ -176,7 +102,6 @@ export default {
     justify-content: center;
     flex-direction: column;
     gap: 8px;
-    max-width: 1168px;
     &__item {
       border-radius: 20px;
       background: $bg-day-main;
@@ -192,24 +117,25 @@ export default {
     }
     &-info {
       &__text {
+        margin-top: 15px;
         font-family: "GraphikRegular";
-        margin-top: 24px;
-        font-size: 16px;
-        line-height: 24px;
+        font-size: 14px;
+        line-height: 22px;
       }
       &__bottom {
-        margin-top: auto;
+        margin-top: 41px;
       }
       &__price {
         position: relative;
-        margin-top: 24px;
-        padding: 20px;
+        margin-top: 20px;
+        padding: 16px;
         background: $bg-day-secondary;
         border-radius: 20px;
       }
       .price-old {
         font-family: "GraphikMedium";
-        font-size: 16px;
+        font-size: 14px;
+        line-height: 18px;
         &__value {
           position: relative;
           &::before {
@@ -233,6 +159,7 @@ export default {
         }
       }
       .price-current {
+        margin-top: 13px;
         display: flex;
         gap: 4px;
         font-family: "GraphikSemiBold";
@@ -240,7 +167,6 @@ export default {
         line-height: 32px;
         &__valuta {
           display: block;
-          margin-top: 5px;
           font-size: 14px;
           font-family: "GraphikMedium";
           line-height: 18px;
@@ -248,81 +174,101 @@ export default {
       }
       &__sale-icon {
         position: absolute;
-        top: 20px;
-        right: 20px;
+        top: 16px;
+        right: 16px;
       }
       &__payment-text {
         margin-top: 4px;
+        margin-bottom: 2px;
+        margin-top: 1px;
+        margin-bottom: 2px;
         font-size: 12px;
         line-height: 16px;
       }
     }
-    &-form {
-      &__wrapper {
-        display: flex;
-        flex-direction: column;
-        gap: 40px;
-      }
-      &__card-list {
-        margin-top: 32px;
-        display: grid;
-        grid-gap: 8px;
-        grid-template-columns: 1fr 1fr;
-      }
-      &__field-list {
-        margin-top: 32px;
-        display: flex;
-        flex-direction: column;
-        gap: 16px;
-      }
-      &__button {
-        margin-top: 32px;
-      }
-      &__security {
-        max-width: 82%;
-        margin-top: 16px;
-        &-text {
-          font-size: 12px;
-          line-height: 16px;
-          color: $text-day-secondary;
-        }
-        &-link {
-          text-decoration: underline;
-        }
-      }
-    }
+  }
+  @include mobile {
+    max-width: 100%;
   }
   @include tablet {
     .order {
+      max-width: 696px;
       &-info,
       &-form {
-        padding: 34px 120px;
+        padding: 32px 120px;
+      }
+      &-info {
+        &__bottom {
+          margin-top: 40px;
+        }
+        &__price {
+          margin-top: 20px;
+        }
       }
     }
   }
   @include hovers {
     .order {
       flex-direction: row;
+      max-width: 928px;
       &-info,
       &-form {
         padding: 40px;
       }
       &-info {
         width: calc(100% / 12 * 6);
+        padding: 40px;
+        padding-right: 25px;
+        &__text {
+          margin-top: 24px;
+          font-size: 16px;
+          line-height: 24px;
+          width: 80%;
+        }
+        &__bottom {
+          margin-top: auto;
+        }
         .price-current {
           margin-top: 16px;
           font-size: 32px;
           line-height: 40px;
           &__valuta {
+            margin-top: 5px;
             font-size: 16px;
             line-height: 20px;
           }
         }
       }
+      &__price {
+        margin-top: 24px;
+        padding: 20px;
+      }
+      .price-old {
+        font-size: 16px;
+        line-height: $line-height-default;
+      }
       &-form {
         width: calc(100% / 12 * 6 + 25px);
-        &__button {
-          width: max-content;
+      }
+      &__sale-icon {
+        top: 20px;
+        right: 20px;
+      }
+      &__payment-text {
+        margin-top: 4px;
+        margin-bottom: 2px;
+      }
+    }
+  }
+  @include desktop {
+    .section {
+      padding: 112px 0;
+    }
+    .order {
+      max-width: 1168px;
+      &-info {
+        &__text {
+          width: 100%;
         }
       }
     }
